@@ -1,10 +1,39 @@
-let message = "Init message"
+var name = "Phuong";
 
-function changeMessage() {
-    setTimeout(() => {
-        message = "Changed message"; //API request
-    }, 2000);
+function namedCallback(param) {
+    console.log("NamedCallback() called by", param);
 }
 
-changeMessage ();
-console.log(message);
+function testFunction(callback) {
+
+}
+
+testFunction(namedCallback(name));
+
+function callbackHell() {
+    function first(cb) {
+        setTimeout(function() {
+            return cb('first');
+        }, 0);
+    }
+
+    function second(cb) {
+        return cb('second');
+    }
+
+    function third(cb) {
+        return cb('third');
+    }
+
+    first(function(result1) {
+        console.log(result1);
+        second(function(result2) {
+            console.log(result2);
+            third(function(result3) {
+                console.log(result3);
+            });
+        });
+    });
+}
+
+callbackHell();

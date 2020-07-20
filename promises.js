@@ -57,6 +57,26 @@ function promiseParallel() {
     })
 }
 
+function promiseRace() {
+    const promise1 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("One")
+        }, 1000);
+    })
+
+    const promise2 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("Two")
+        }, 500);
+    })
+
+    Promise.race([promise1, promise2]).then((result) => {
+        //Return promise is faster
+        console.log("***** Promise race: " + result + " *****");
+    })
+}
+
 promise();
 // promiseParallel();
 // promiseChain();
+promiseRace();
