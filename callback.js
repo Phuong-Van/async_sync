@@ -1,14 +1,18 @@
-var name = "Phuong";
-
-function namedCallback(param) {
-    console.log("NamedCallback() called by", param);
+function doHomework(subject, callback){
+    console.log(`Starting exercises ${subject}`);
+    callback();
 }
 
-function testFunction(callback) {
-
+function alertFinished(){
+    console.log("==> Finished.");
 }
 
-testFunction(namedCallback(name));
+doHomework('math', function () {
+    console.log("==> Finished.");
+})
+
+doHomework("physical education", alertFinished);
+
 
 function callbackHell() {
     function first(cb) {
@@ -36,4 +40,5 @@ function callbackHell() {
     });
 }
 
-callbackHell();
+// callbackHell();
+
